@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+  "name": "Cambridge Dictionary Search",
+  "version": "1.0",
+  "description": "Search for English words in the Cambridge Dictionary directly from the address bar.",
+  "permissions": [
+    "contextMenus",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "icons": {
+    "48": "icons/icon.ico"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "cambridge_dictionary_search@example.com"
+    }
+  },
+  "browser_action": {
+    "default_icon": "icons/icon.ico"
+  },
+  "omnibox": {
+    "keyword": "cd"
+  }
+}

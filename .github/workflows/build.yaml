@@ -27,7 +27,7 @@ jobs:
           jwtSecret: ${{ secrets.FF_JWT_SECRET }}
 
       - name: Upload Signed XPI Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: firefox-xpi
           path: artifact/extension.signed.xpi

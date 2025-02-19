@@ -35,7 +35,7 @@ jobs:
 
       - name: Get version from manifest.json
         id: get_version
-        run: echo "version=$(jq -r '.version' dist/manifest.json)" >> $GITHUB_OUTPUT
+        run: echo "version=$(jq -r '.version' manifest.json)" >> $GITHUB_OUTPUT
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2

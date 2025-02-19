@@ -20,6 +20,7 @@ jobs:
       - name: Sign Firefox Extension (XPI)
         uses: cardinalby/webext-buildtools-firefox-sign-xpi-action@1.0.6
         with:
+          timeoutMs: 600000
           zipFilePath: artifact/extension.zip
           xpiFilePath: artifact/extension.signed.xpi
           extensionId: ${{ secrets.FF_EXT_UUID }}

@@ -15,7 +15,7 @@ jobs:
       - name: Create extension zip
         run: |
           mkdir -p artifact
-          zip -r artifact/extension.zip dist -x "*.git*"
+          zip -r artifact/extension.zip . -x "*.git*"
 
       - name: Sign Firefox Extension (XPI)
         uses: cardinalby/webext-buildtools-firefox-sign-xpi-action@1.0.6

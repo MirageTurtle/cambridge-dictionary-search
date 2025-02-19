@@ -1,0 +1,42 @@
+name: Release Firefox XPI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-sign:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create extension zip
+        run: |
+          mkdir -p artifact
+          zip -r artifact/extension.zip dist -x "*.git*"
+
+      - name: Sign Firefox Extension (XPI)
+        uses: cardinalby/webext-buildtools-firefox-sign-xpi-action@1.0.6
+        with:
+          zipFilePath: artifact/extension.zip
+          xpiFilePath: artifact/extension.signed.xpi
+          extensionId: ${{ secrets.FF_EXT_UUID }}
+          jwtIssuer: ${{ secrets.FF_JWT_ISSUER }}
+          jwtSecret: ${{ secrets.FF_JWT_SECRET }}
+
+      - name: Upload Signed XPI Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: firefox-xpi
+          path: artifact/extension.signed.xpi
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: artifact/extension.signed.xpi
+          tag_name: v0.0.${{ github.run_number }}
+          # release_name: "Cambridge Dictionary Search for Firefox Add-on v0.0.${{ github.run_number }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

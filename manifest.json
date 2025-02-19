@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Cambridge Dictionary Search",
-  "version": "0.2",
+  "version": "0.1",
   "description": "Search for English words in the Cambridge Dictionary directly from the address bar.",
   "permissions": [
     "contextMenus",

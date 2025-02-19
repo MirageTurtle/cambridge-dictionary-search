@@ -1,5 +1,8 @@
 name: Release Firefox XPI
 
+permissions:
+  contents: write
+
 on:
   push:
     branches: [ main ]
